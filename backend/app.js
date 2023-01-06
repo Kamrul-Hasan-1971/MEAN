@@ -1,7 +1,18 @@
 const express = require('express');
 const bodyParser = require("body-parser");
+const mongoose = require('mongoose');
+
+const postRoutes = require('./routes/posts')
 
 const app = express();
+
+mongoose.connect('mongodb+srv://Hasan1971:730025@cluster0.2greaqi.mongodb.net/mean?retryWrites=true&w=majority')
+.then((response)=>{
+  //console.log("Connected to Database", response);
+})
+.catch((err)=>{
+  console.log("Error during connecting to Database", err);
+})
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -17,35 +28,8 @@ app.use((req, res, next) => {
     'GET, POST, PATCH, DELETE, OPTIONS'
   );
   next();
-})
-
-app.post("/api/posts", (req, res, next) => {
-  const post = req.body;
-  console.log(post);
-  res.status(201).json({
-    message: "Post Added successfully"
-  })
-})
-
-app.get("/api/posts", (req, res, next) => {
-  const posts = [
-    {
-      id: "gfhgdsjkfjkd",
-      title: "First serve",
-      content: "This is coming from server"
-    },
-    {
-      id: "rkfjsajdkfjsdk",
-      title: "Second serve",
-      content: "This is coming from server"
-    }
-  ]
-  // res.send(posts)
-  res.status(200).json({
-    message: 'Posts fetched successfully',
-    posts: posts
-  })
 });
 
+app.use("/api/posts",postRoutes);
 
 module.exports = app;
