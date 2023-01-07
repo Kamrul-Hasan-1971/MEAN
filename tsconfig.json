@@ -8,7 +8,6 @@
     "strict": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
-    "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
     "declaration": false,
@@ -22,6 +21,7 @@
     "strictPropertyInitialization": false,
     "strictNullChecks":false,
     "noImplicitAny": false,
+    "noImplicitReturns": false,
     "lib": [
       "ES2022",
       "dom"
