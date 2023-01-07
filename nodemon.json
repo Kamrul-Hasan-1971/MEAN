@@ -1,0 +1,6 @@
+{
+  "env": {
+    "MONGO_ATLAS_PW": "mongodb+srv://Hasan1971:730025@cluster0.2greaqi.mongodb.net/mean?retryWrites=true&w=majority",
+    "JWT_KEY": "c65a1874-0545-4bdc-ab29-5ecef3542cf1"
+  }
+}
