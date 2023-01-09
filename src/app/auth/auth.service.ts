@@ -4,7 +4,7 @@ import { Router } from "@angular/router";
 import { Subject } from "rxjs";
 
 import { environment } from "../../environments/environment";
-import { AuthData } from "./auth-data.model";
+import { AuthDataLogin, AuthDataSignUp } from "./auth-data.model";
 
 const BACKEND_URL = environment.apiUrl + "/user/";
 
@@ -34,8 +34,8 @@ export class AuthService {
     return this.authStatusListener.asObservable();
   }
 
-  createUser(email: string, password: string) {
-    const authData: AuthData = { email: email, password: password };
+  createUser(email: string, password: string, confirmPassword: string) {
+    const authData: AuthDataSignUp = { email: email, password: password, confirmPassword:confirmPassword  };
     this.http.post(BACKEND_URL + "/signup", authData).subscribe(
       () => {
         this.router.navigate(["/"]);
@@ -47,7 +47,7 @@ export class AuthService {
   }
 
   login(email: string, password: string) {
-    const authData: AuthData = { email: email, password: password };
+    const authData: AuthDataLogin = { email: email, password: password };
     this.http
       .post<{ token: string; expiresIn: number; userId: string }>(
         BACKEND_URL + "/login",
